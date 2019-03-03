@@ -4,6 +4,17 @@ using System.Text;
 
 namespace LINQ.Models
 {
+	public static class StringExtensions
+	{
+		public static String FirstName(this String name)
+		{
+			return name.Substring(0, name.LastIndexOf(' '));
+		}
+
+		public static String LastName(this String name) =>
+			name.Substring(name.LastIndexOf(' ') + 1);
+	}
+
 	public static class Formula1
 	{
 		private static List<Racer> s_racers;
@@ -75,6 +86,85 @@ namespace LINQ.Models
 			return s_teams;
 		}
 
-
+		private static List<Championship> s_championships;
+		public static IEnumerable<Championship> GetChampionships()
+		{
+			if (s_championships == null)
+			{
+				s_championships = new List<Championship>
+				{
+					new Championship(1950, "Nino Farina", "Juan Manuel Fangio", "Luigi Fagioli"),
+					new Championship(1951, "Juan Manuel Fangio", "Alberto Ascari", "Froilan Gonzalez"),
+					new Championship(1952, "Alberto Ascari", "Nino Farina", "Piero Taruffi"),
+					new Championship(1953, "Alberto Ascari", "Juan Manuel Fangio", "Nino Farina"),
+					new Championship(1954, "Juan Manuel Fangio", "Froilan Gonzalez", "Mike Hawthorn"),
+					new Championship(1955, "Juan Manuel Fangio", "Stirling Moss", "Eugenio Castellotti"),
+					new Championship(1956, "Juan Manuel Fangio", "Stirling Moss", "Peter Collins"),
+					new Championship(1957, "Juan Manuel Fangio", "Stirling Moss", "Luigi Musso" ),
+					new Championship(1958, "Mike Hawthorn", "Stirling Moss", "Tony Brooks"),
+					new Championship(1959, "Jack Brabham", "Tony Brooks", "Stirling Moss"),
+					new Championship(1960, "Jack Brabham", "Bruce McLaren", "Stirling Moss"),
+					new Championship(1961, "Phil Hill", "Wolfgang von Trips", "Stirling Moss"),
+					new Championship(1962, "Graham Hill", "Jim Clark", "Bruce McLaren"),
+					new Championship(1963, "Jim Clark", "Graham Hill", "Richie Ginther"),
+					new Championship(1964, "John Surtees", "Graham Hill", "Jim Clark"),
+					new Championship(1965, "Jim Clark", "Graham Hill", "Jackie Stewart"),
+					new Championship(1966, "Jack Brabham", "John Surtees", "Jochen Rindt"),
+					new Championship(1967, "Denny Hulme", "Jack Brabham", "Jim Clark"),
+					new Championship(1968, "Graham Hill", "Jackie Stewart", "Denny Hulme"),
+					new Championship(1969, "Jackie Stewart", "Jackie Ickx", "Bruce McLaren"),
+					new Championship(1970, "Jochen Rindt", "Jackie Ickx", "Clay Regazzoni"),
+					new Championship(1971, "Jackie Stewart", "Ronnie Peterson", "Francois Cevert"),
+					new Championship(1972, "Emerson Fittipaldi", "Jackie Stewart", "Denny Hulme"),
+					new Championship(1973, "Jackie Stewart", "Emerson Fittipaldi", "Ronnie Peterson"),
+					new Championship(1974, "Emerson Fittipaldi", "Clay Regazzoni", "Jody Scheckter"),
+					new Championship(1975, "Niki Lauda", "Emerson Fittipaldi", "Carlos Reutemann"),
+					new Championship(1976, "James Hunt", "Niki Lauda", "Jody Scheckter"),
+					new Championship(1977, "Niki Lauda", "Jody Scheckter", "Mario Andretti"),
+					new Championship(1978, "Mario Andretti", "Ronnie Peterson", "Carlos Reutemann"),
+					new Championship(1979, "Jody Scheckter", "Gilles Villeneuve", "Alan Jones"),
+					new Championship(1980, "Alan Jones", "Nelson Piquet", "Carlos Reutemann"),
+					new Championship(1981, "Nelson Piquet", "Carlos Reutemann", "Alan Jones"),
+					new Championship(1982, "Keke Rosberg", "Didier Pironi", "John Watson"),
+					new Championship(1983, "Nelson Piquet", "Alain Prost", "Rene Arnoux"),
+					new Championship(1984, "Niki Lauda", "Alain Prost", "Elio de Angelis"),
+					new Championship(1985, "Alain Prost", "Michele Alboreto", "Keke Rosberg"),
+					new Championship(1986, "Alain Prost", "Nigel Mansell", "Nelson Piquet"),
+					new Championship(1987, "Nelson Piquet", "Nigel Mansell", "Ayrton Senna"),
+					new Championship(1988, "Ayrton Senna", "Alain Prost", "Gerhard Berger"),
+					new Championship(1989, "Alain Prost", "Ayrton Senna", "Riccardo Patrese"),
+					new Championship(1990, "Ayrton Senna", "Alain Prost", "Nelson Piquet"),
+					new Championship(1991, "Ayrton Senna", "Nigel Mansell", "Riccardo Patrese"),
+					new Championship(1992, "Nigel Mansell", "Riccardo Patrese", "Michael Schumacher"),
+					new Championship(1993, "Alain Prost", "Ayrton Senna", "Damon Hill"),
+					new Championship(1994, "Michael Schumacher", "Damon Hill", "Gerhard Berger"),
+					new Championship(1995, "Michael Schumacher", "Damon Hill", "David Coulthard"),
+					new Championship(1996, "Damon Hill", "Jacques Villeneuve", "Michael Schumacher"),
+					new Championship(1997, "Jacques Villeneuve", "Heinz-Harald Frentzen", "David Coulthard"),
+					new Championship(1998, "Mika Hakkinen", "Michael Schumacher", "David Coulthard"),
+					new Championship(1999, "Mika Hakkinen", "Eddie Irvine", "Heinz-Harald Frentzen"),
+					new Championship(2000, "Michael Schumacher", "Mika Hakkinen", "David Coulthard"),
+					new Championship(2001, "Michael Schumacher", "David Coulthard", "Rubens Barrichello"),
+					new Championship(2002, "Michael Schumacher", "Rubens Barrichello", "Juan Pablo Montoya"),
+					new Championship(2003, "Michael Schumacher", "Kimi Räikkönen", "Juan Pablo Montoya"),
+					new Championship(2004, "Michael Schumacher", "Rubens Barrichello", "Jenson Button"),
+					new Championship(2005, "Fernando Alonso", "Kimi Räikkönen", "Michael Schumacher"),
+					new Championship(2006, "Fernando Alonso", "Michael Schumacher", "Felipe Massa"),
+					new Championship(2007, "Kimi Räikkönen", "Lewis Hamilton", "Fernando Alonso"),
+					new Championship(2008, "Lewis Hamilton", "Felipe Massa", "Kimi Räikkönen"),
+					new Championship(2009, "Jenson Button", "Sebastian Vettel", "Rubens Barrichello"),
+					new Championship(2010, "Sebastian Vettel", "Fernando Alonso", "Mark Webber"),
+					new Championship(2011, "Sebastian Vettel", "Jenson Button", "Mark Webber"),
+					new Championship(2012, "Sebastian Vettel", "Fernando Alonso", "Kimi Räikkönen"),
+					new Championship(2013, "Sebastian Vettel", "Fernando Alonso", "Mark Webber"),
+					new Championship(2014, "Lewis Hamilton", "Nico Rosberg", "Daniel Ricciardo"),
+					new Championship(2015, "Lewis Hamilton", "Nico Rosberg", "Sebastian Vettel"),
+					new Championship(2016, "Nico Rosberg", "Lewis Hamilton", "Daniel Ricciardo"),
+					new Championship(2017, "Lewis Hamilton", "Sebastian Vettel", "Valtteri Bottas"),
+					new Championship(2018, "Lewis Hamilton", "Sebastian Vettel", "Kimi Räikkönen")
+				};
+			}
+			return s_championships;
+		}
 	}
 }
